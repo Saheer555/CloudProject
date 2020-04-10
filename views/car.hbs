@@ -1,0 +1,121 @@
+<br>
+<div class="container">
+    {{> messages }}
+    <div class="row">
+        <div class="col-md-4 col-xs-4 align-self-center">
+            <a href="{{car.imagePath}}">
+                <img style="width:15rem; height-15rem;" src="{{car.imagePath}}" alt="...">
+            </a>
+        </div>
+        <div class="col-md-8 col-xs-8">
+            <br>
+            <h2 style="font-family: 'Garamond'; font-weight:bold;">{{car.brand}}</h2>
+            <h3 style="font-family: 'Garamond'; font-weight:bold;">{{car.carmodel}}</h3>
+            <hr class="hr w-100 m-0 bg-danger">
+            <div class="row m-0">
+                <div class="col-4 align-self-center">
+                    <p>
+                        <h4 class="text-danger">₹{{car.price}}</h4>
+                        <h5 class="text-success">In stock</h5>
+                    </p>
+                </div>
+
+
+                {{!-- <div class="col-4 align-self-center">
+                    <button class="btn btn-info w-100">Add to cart</button>
+                </div> --}}
+                <!-- Button trigger modal -->
+                <div class="col-4 align-self-center">
+                    <button class="btn btn-info w-100" data-toggle="modal" data-target="#exampleModal">
+                        Buy
+                    </button>
+                </div>
+
+                <!-- Modal -->
+                <form method="POST" action="/order/{{car._id}}">
+                    <div class="modal fade" style="margin-top: 70px;" id="exampleModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">{{car.brand}}</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="quantity">Quantity</label>
+                                        <input type="number" class="form-control" id="quantity" name="quantity"
+                                            placeholder="Enter quantity">
+                                        <input type="text" class="form-control" id="productname" name="productname"
+                                            value="{{ car.carmodel }}" hidden>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-success">Buy</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="col-4 align-self-center">
+                    <button class="btn btn-warning w-100">Add to cart</button>
+                </div>
+
+            </div>
+            <hr class="hr m-0">
+
+            <p>
+                <h5>Description:</h5>
+                <ul class="list-unstyled">
+                    {{#each desc}}
+                    <li class="li mt-1"><small>{{this}}</small></li>
+                    {{/each}}
+                </ul>
+            </p>
+
+        </div>
+    </div>
+    <hr class="hr bg-info">
+    <div>
+        <a style="float: right;" href="/review/{{car.id}}" class="btn btn-primary">Add review</a>
+        <h2>Read Reviews</h2>
+        <br>
+
+    </div>
+    {{!-- Reviews to be dynamically fetched here --}}
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's
+                        content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function myFunction() {
+        var dots = document.getElementById("dots");
+        var moreText = document.getElementById("more");
+        var btnText = document.getElementById("myBtn");
+
+        if (dots.style.display === "none") {
+            dots.style.display = "inline";
+            btnText.innerHTML = "Load More Reviews";
+            moreText.style.display = "none";
+        } else {
+            dots.style.display = "none";
+            btnText.innerHTML = "Load less Reviews";
+            moreText.style.display = "inline";
+        }
+    }
+</script>

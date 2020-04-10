@@ -1,9 +1,14 @@
 <div class="landing-pic">
     <h2 class="animated bounceInLeft">Welcome!</h2>
     <h3 class="animated bounceInRight">Nitte's Best Car Rental Service (lol)</h3>
+    <div class="text-center" style="padding-top: 38em;">
+        <a href="#about" class="text-white">
+            <i class="fa fa-angle-down" style="font-size: 42px"></i>
+        </a>
+    </div>
 </div>
 
-<div class="text-center container-fluid">
+<div id="about" class="text-center container-fluid">
     <h1 class="p-3">Something about us</h1>
     <p>What is Lorem Ipsum?
         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
@@ -59,4 +64,22 @@
         repetition, injected humour, or non-characteristic words etc.
 
     </p>
+</div>
+
+<h1 class="text-center">Browse Products</h1>
+<br>
+<div class="grid">
+    {{#each cars}}
+    <article class="card car-item">
+        <h6 class="text text-center"> {{this.brand}} </h6>
+        <h5 class="text text-center"> {{this.carmodel}} </h5>
+        <div class="card__image">
+            <a href="/car/{{this.id}}">
+                <img style="width: 100%; height:100%;" src="{{this.imagePath}}" alt="...">
+            </a>
+        </div>
+        <h6 class="pull-left mt-2">Rs.{{ this.price }}</h6>
+        <a href="/car/{{this.id}}" class="btn btn-primary" style="width:100%">View Product</a>
+    </article>
+    {{/each}}
 </div>

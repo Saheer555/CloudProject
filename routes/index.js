@@ -3,9 +3,13 @@ var router = express.Router();
 
 const { ensureAuthenticated } = require('../config/auth');
 
+var Car = require('../models/Car');
+
 // GET home page
 router.get('/', (req, res) => {
-  res.render('index', { title: 'Index Page', layout: 'userlayout' });
+  Car.find( (err, docs) => {
+    res.render('index', { title: 'Index Page', layout: 'userlayout', cars: docs });
+  });
 });
 
 // GET dashboard

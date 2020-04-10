@@ -11,6 +11,7 @@ const session = require('express-session');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var carsRouter = require('./routes/car');
 
 // Passport config
 require('./config/passport')(passport);
@@ -65,6 +66,7 @@ app.use((req, res, next) => {
 // Routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/car', carsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
