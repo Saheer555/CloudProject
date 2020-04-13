@@ -23,8 +23,9 @@ router.get('/:id',(req, res) => {
     desc = desc.split("\n");
     docs[0].description = desc;
 
-    // No Review and No Rating
+    // Render page
     res.render('car', {
+      title: carbrand + " - " + carmodel,
       brand: carbrand,
       carmodel: carmodel,
       car: docs[0],

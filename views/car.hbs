@@ -9,8 +9,7 @@
         </div>
         <div class="col-md-8 col-xs-8">
             <br>
-            <h2 style="font-family: 'Garamond'; font-weight:bold;">{{car.brand}}</h2>
-            <h3 style="font-family: 'Garamond'; font-weight:bold;">{{car.carmodel}}</h3>
+            <h2 style="font-family: 'Garamond'; font-weight:bold;">{{car.brand}} - {{car.carmodel}}</h2>
             <hr class="hr w-100 m-0 bg-danger">
             <div class="row m-0">
                 <div class="col-4 align-self-center">
@@ -30,37 +29,6 @@
                         Buy
                     </button>
                 </div>
-
-                <!-- Modal -->
-                <form method="POST" action="/order/{{car._id}}">
-                    <div class="modal fade" style="margin-top: 70px;" id="exampleModal" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">{{car.brand}}</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <label for="quantity">Quantity</label>
-                                        <input type="number" class="form-control" id="quantity" name="quantity"
-                                            placeholder="Enter quantity">
-                                        <input type="text" class="form-control" id="productname" name="productname"
-                                            value="{{ car.carmodel }}" hidden>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-success">Buy</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-
                 <div class="col-4 align-self-center">
                     <button class="btn btn-warning w-100">Add to cart</button>
                 </div>
@@ -80,42 +48,93 @@
         </div>
     </div>
     <hr class="hr bg-info">
-    <div>
-        <a style="float: right;" href="/review/{{car.id}}" class="btn btn-primary">Add review</a>
-        <h2>Read Reviews</h2>
-        <br>
-
-    </div>
-    {{!-- Reviews to be dynamically fetched here --}}
-    <div class="row">
-        <div class="col-md-3">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's
-                        content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+    {{!-- Rent Form --}}
+    <h2>Rent this Car</h2>
+    <div class="card" style="margin: 0;">
+        <form method="POST" action="/rent/{{ car._id }}">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" id="userid" name="userid" value="{{userid}}" hidden>
+                </div>
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" id="carregnumber" name="carregnumber"
+                        value="{{ car.carregnumber }}" hidden>
                 </div>
             </div>
-        </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label class="mr-sm-2" for="pickupdate">Pick up Date</label>
+                    <div class="input-group">
+                        <div class='input-group-prepend'>
+                            <button type="button" id="toggle1" class="input-group-text">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <input type="text" id="pickupdate" name="pickupdate" class="form-control" autocomplete="off" />
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="pickuppoint">Pick up Point</label>
+                    <input type="text" class="form-control" id="pickuppoint" name="pickuppoint">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label class="mr-sm-2" for="dropdate">Drop Date</label>
+                    <div class="input-group">
+                        <div class='input-group-prepend'>
+                            <button type="button" id="toggle2" class="input-group-text">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <input type="text" id="dropdate" name="dropdate" class="form-control" autocomplete="off" />
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="droppoint">Drop Point</label>
+                    <input type="text" class="form-control" id="droppoint" name="droppoint">
+                </div>
+                <div class="form-group input-group mb-3 mt-3 col-md-6">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" style="height:fit-content;" for="inputGroupSelect01">Fuel
+                            Package</label>
+                    </div>
+                    <select class="custom-select" id="fuelpackage" name="fuelpackage" onchange="getText(this)">
+                        <option value="0" selected>Choose...</option>
+                        <option value="1">50</option>
+                        <option value="2">100</option>
+                        <option value="3">150</option>
+                        <option value="4">No Fuel</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-6 text-center">
+                    <label for="totalprice">Total Price</label>
+                    <h4 id="calcprice">Please select a Fuel Package</h4>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-danger float-right" style="margin-right: 10px;">
+                Rent now!
+            </button>
+        </form>
     </div>
+
 </div>
 
 <script>
-    function myFunction() {
-        var dots = document.getElementById("dots");
-        var moreText = document.getElementById("more");
-        var btnText = document.getElementById("myBtn");
-
-        if (dots.style.display === "none") {
-            dots.style.display = "inline";
-            btnText.innerHTML = "Load More Reviews";
-            moreText.style.display = "none";
-        } else {
-            dots.style.display = "none";
-            btnText.innerHTML = "Load less Reviews";
-            moreText.style.display = "inline";
+    function getText(slction) {
+        var choice = slction.value;
+        if (choice == 0) {
+            document.getElementById('calcprice').innerHTML = "Please select a Fuel Package";
+            return;
+        } else if (choice == 1) {
+            choice = 'suk ma diiiik';
+        } else if (choice == 2) {
+            choice = 'optimize this later';
         }
+        document.getElementById('calcprice').innerHTML = "₹" + choice;
     }
 </script>

@@ -13,6 +13,13 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    license: {
+        type: String,
+        required: true
+    },
+    verified: {
+        type: Boolean
+    },
     date: {
         type: Date,
         default: Date.now

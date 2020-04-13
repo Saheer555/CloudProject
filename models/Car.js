@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 
-var ProductSchema = new Schema({
+var CarSchema = new Schema({
     'brand': { 
         type: String,
         required: true 
@@ -12,6 +12,10 @@ var ProductSchema = new Schema({
         required: true 
     },
     'imagePath': { 
+        type: String, 
+        required: true 
+    },
+    'carregnumber': { 
         type: String, 
         required: true 
     },
@@ -25,5 +29,5 @@ var ProductSchema = new Schema({
      }
 });
 
-const Product = mongoose.model('Car', ProductSchema);
-module.exports = Product;
+const Car = mongoose.model('Car', CarSchema);
+module.exports = Car;

@@ -41,11 +41,11 @@ router.get('/register', (req, res) => {
 
 // Register Handle
 router.post('/register', (req, res) => {
-  const { name, email, password, password2 } = req.body;
+  const { name, email, password, password2, license } = req.body;
   let errors = [];
 
   // Check required fields
-  if(!name || !email || !password || !password2) {
+  if(!name || !email || !password || !password2 || !license) {
       errors.push({ msg: 'Please fill in all fields.' });
   }
 
@@ -66,6 +66,7 @@ router.post('/register', (req, res) => {
           email,
           password,
           password2,
+          license
       });
   } else {
       // Validation Passed
@@ -80,12 +81,14 @@ router.post('/register', (req, res) => {
                       email,
                       password,
                       password2,
+                      license
                   });
               } else {
                   const newUser = new User({
                       name,
                       email,
-                      password
+                      password,
+                      license
                   });
 
                   // Hash Password
