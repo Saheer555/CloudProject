@@ -13,6 +13,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var carsRouter = require('./routes/car');
 var rentRouter = require('./routes/rent');
+var adminRouter = require('./routes/admin');
 
 // Passport config
 require('./config/passport')(passport);
@@ -69,6 +70,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/car', carsRouter);
 app.use('/rent', rentRouter);
+app.use('/admin', adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -20,6 +20,15 @@ var cars = [
         'carregnumber': 'MH 12 RN 1289',
         'description': 'The Tesla Model X has 1 Electric Engine on offer.\nIt is available with the Automatic transmission.\nThe Model X has a length of 5036mm, width of 2270mm and a wheelbase of 2964mm.',
         'price': 4500.00
+    }),
+
+    new Car({
+        'brand': 'Hummer',
+        'carmodel': 'H3',
+        'imagePath': ["https://cimg2.ibsrv.net/ibimg/hgm/510x287-1/100/217/hummer-h3-black-edition_100217362.jpg", "https://cdn.motor1.com/images/mgl/B6ve/s1/2007-26158-hummer-h3-black-edition1.jpg", "http://autowpaper.com/images/hummer-h3-black-2.jpg"],
+        'carregnumber': 'TS 09 UB 8902',
+        'description': 'The Hummer H3 has 1 Petrol Engine on offer.\nThe Petrol engine is 3700 cc.\nIt is available with the transmission.\nThe H3 is a 5 seater SUV.',
+        'price': 3500.00
     })
 ];
 

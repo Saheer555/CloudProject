@@ -14,14 +14,6 @@ router.get('/', (req, res) => {
   });
 });
 
-// GET admin dashboard
-router.get('/admin/dashboard', function (req, res, next) {
-  res.render('AdminDashboard', { title: 'WAR-Dashboard', layout: 'adminlayout' });
-});
-router.get('/admin/viewusers', function (req, res, next) {
-  res.render('AdminViewUsers', { title: 'WAR-View Users', layout: 'adminlayout' });
-});
-
 // GET user dashboard
 router.get('/dashboard', ensureAuthenticated, (req, res) => {
   const userid = req.user._id;

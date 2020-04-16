@@ -2,15 +2,19 @@
 <div class="container mt-5">
     {{> messages }}
     <div class="row">
-        <div class="col-md-4 col-xs-4 align-self-center">
+        <div class="col-12">
+            <h2 style="font-weight:bold;">{{car.brand}} - {{car.carmodel}} ({{ car.carregnumber }})</h2>
+            <hr class="hr w-100 m-0 bg-danger">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4 align-self-center">
             <a href="{{car.imagePath.[0]}}">
-                <img style="width:15rem;" src="{{car.imagePath.[0]}}" alt="...">
+                <img class="img-fluid" src="{{car.imagePath.[0]}}">
             </a>
         </div>
-        <div class="col-md-8 col-xs-8">
+        <div class="col-8">
             <br>
-            <h2 style="font-family: 'Garamond'; font-weight:bold;">{{car.brand}} - {{car.carmodel}}</h2>
-            <hr class="hr w-100 m-0 bg-danger">
             <div class="row m-0">
                 <div class="col-4 align-self-center">
                     <p>
@@ -25,12 +29,10 @@
                 </div> --}}
                 <!-- Button trigger modal -->
                 <div class="col-4 align-self-center">
-                    <a class="btn btn-info w-100" href="#rentthiscar">
-                        Rent
+                    <a class="btn btn-primary w-75 p-3" href="#rentthiscar">
+                        Book Now
                     </a>
                 </div>
-
-
             </div>
             <hr class="hr m-0">
 
@@ -38,7 +40,12 @@
                 <h5>Description:</h5>
                 <ul class="list-unstyled">
                     {{#each desc}}
-                    <li class="li mt-2">- {{this}}</li>
+                    <li class="li mt-2">
+                        <small>
+                            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                        </small>
+                        {{this}}
+                    </li>
                     {{/each}}
                 </ul>
             </p>
@@ -74,12 +81,8 @@
         </a>
     </div>
 
-
-
-
-
-
     <hr class="hr bg-info">
+
     {{!-- Rent Form --}}
     <h2 id="rentthiscar">Rent this Car</h2>
     <div class="card" style="margin: 0;">

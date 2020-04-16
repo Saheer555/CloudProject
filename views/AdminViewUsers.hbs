@@ -12,14 +12,60 @@
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">License</th>
-                        <th scope="col">Verification status</th>
+                        <th scope="col">Verified</th>
+                        <th scope="col">Verify Action</th>
                     </tr>
                 </thead>
                 <tbody>
-
+                    {{#each user}}
+                    <tr>
+                        <td>{{ this._id }}</td>
+                        <td>{{ this.name }}</td>
+                        <td>{{ this.email }}</td>
+                        <td>{{ this.license }}</td>
+                        <td>{{ this.verified }}</td>
+                        <td>
+                            <div class="float-left" style="padding-right:10px;">
+                                <form method="POST" action="/admin/verify/{{ this._id }}">
+                                    <button class="btn btn-success" type="submit" title="Verify">
+                                        <i class="text-center fa fa-check" aria-hidden="true"></i>
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="float-left">
+                                <form method="POST" action="/admin/deverify/{{ this._id }}">
+                                    <button class="btn btn-danger" type="submit" title="Deverify">
+                                        <i class="text-center fa fa-ban" aria-hidden="true"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    {{/each}}
                 </tbody>
             </table>
         </div>
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    License verification status
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Pending</button>
+                    <button type="button" class="btn btn-primary">Verified</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
