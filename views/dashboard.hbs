@@ -1,3 +1,104 @@
-<div class="container-fluid" style="margin-top: 100px;">
-    <h1>Welcome {{ name }}</h1>
+<br><br>
+<h1 class="mt-4 ml-3">Welcome {{ name }}</h1>
+<br>
+<div class="row">
+    <div class="col-md-6">
+        <h5 class="ml-3">Edit profile details</h5>
+        {{> messages }}
+        <div class="card">
+            <form method="POST" action="/dashboard">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control" id="userid" name="userid" value="{{userid}}" hidden>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" value="{{name}}" required="">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" value="{{email}}" required="">
+                    </div>
+                </div>
+
+                <div class="clearfix">
+                    <button type="submit" class="btn btn-primary float-left">Save changes</button>
+                    <button type="button" class="btn btn-danger float-right" data-toggle="modal"
+                        data-target="#changePassword">
+                        Change Password
+                    </button>
+                </div>
+            </form>
+        </div>
+        <br><br>
+
+    </div>
+    <div class="col-md-6">
+        <h5 class="ml-3">Order history</h5>
+        <table class="table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each order}}
+                <tr>
+                    <td><a href="/product/{{productid}}" class="text-dark">{{productname}}</a></td>
+                    <td>{{ quantity }}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Change Password Modal -->
+<div class=" modal fade" id="changePassword" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="/dashboard/changepass">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input type="text" class="form-control" id="email" name="email" value="{{email}}" hidden>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="title">Old Password</label>
+                            <input type="text" class="form-control" id="password" name="password" required="">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="title">New Password</label>
+                            <input type="text" class="form-control" id="newpassword" name="newpassword" required="">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="title">Confirm Password</label>
+                            <input type="text" class="form-control" id="newpassword2" name="newpassword2" required="">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

@@ -10,6 +10,23 @@ a {
   color: #00B7FF;
 }
 
+
+.carousel-item {
+  height: 330px;
+}
+
+.carousel-item img {
+  height: 330px;
+  object-fit: scale-down;
+}
+
+.carousel-control-prev-icon {
+  filter: invert(100%);
+}
+.carousel-control-next-icon {
+  filter: invert(100%);
+}
+
 /* NAVBAR */
 
 .navbar {

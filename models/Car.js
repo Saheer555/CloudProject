@@ -3,27 +3,27 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var CarSchema = new Schema({
-    'brand': { 
+    brand: { 
         type: String,
         required: true 
     },
-    'carmodel': { 
+    carmodel: { 
         type: String,
         required: true 
     },
-    'imagePath': { 
+    imagePath: [{
+        type: String,
+        required: true
+    }],
+    carregnumber: { 
         type: String, 
         required: true 
     },
-    'carregnumber': { 
+    description: { 
         type: String, 
         required: true 
     },
-    'description': { 
-        type: String, 
-        required: true 
-    },
-    'price': { 
+    price: { 
         type: Number, 
         required: true
      }

@@ -1,4 +1,5 @@
 const express = require('express');
+const multer = require('multer');
 const router = express.Router();
 
 //import Authentication
@@ -6,6 +7,19 @@ const { ensureAuthenticated } = require('../config/auth');
 
 var Car = require('../models/Car');
 var User = require('../models/User');
+
+//Configuring multer
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+      cb(null, './public/uploads')
+  },
+  filename: function (req, file, cb) {
+      cb(null, Date.now() + file.originalname);
+      console.log(file.mimetype);
+  }
+});
+
+var upload = multer({ storage: storage });
 
 router.get('/:id',(req, res) => {
   const id = req.params.id;
