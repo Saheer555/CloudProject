@@ -1,0 +1,145 @@
+<div class="container-fluid">
+    <h2 class="mt-4" style="color: gray;padding-bottom: 1em;">{{title}}</h2>
+    <div class="row">
+        <div class="col-xs-12 col-md-12 col-lg-12 col-xl-12 mb-4">
+            <div class="card shadow mb-4 hover">
+                <div class="card-header py-3">
+                    <h6 class="text-primary font-weight-bold m-0">Developer Details</h6>
+                </div>
+                <div class="card-body">
+                    <h4 class="small text-primary font-weight-bold">Students<span class="float-right">20%</span></h4>
+                    <div class="progress mb-4">
+                        <div class="progress-bar bg-danger" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"
+                            style="width: 20%;"><span class="sr-only">20%</span>
+                        </div>
+                    </div>
+                    <h4 class="small text-primary font-weight-bold">Faculty <span class="float-right">40%</span>
+                    </h4>
+                    <div class="progress mb-4">
+                        <div class="progress-bar bg-warning" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
+                            style="width: 40%;"><span class="sr-only">40%</span>
+                        </div>
+                    </div>
+                    <h4 class="small text-primary font-weight-bold">Alumni<span class="float-right">60%</span></h4>
+                    <div class="progress mb-4">
+                        <div class="progress-bar bg-primary" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+                            style="width: 60%;"><span class="sr-only">60%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-6 col-md-6 col-lg-6 col-xl-6 mb-4">
+            <div class="card shadow mb-4 hover">
+                <div class="card-header py-3">
+                    <h6 class="text-primary font-weight-bold m-0">Bar Chart</h6>
+                </div>
+                <div class="card-body">
+                    <canvas id="mychart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-6 col-lg-6 col-xl-6 mb-4">
+            <div class="card shadow mb-4 hover">
+                <div class="card-header py-3">
+                    <h6 class="text-primary font-weight-bold m-0">Pie Chart</h6>
+                </div>
+                <div class="card-body">
+                    <canvas id="mychart1"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+<script>
+    let myChart = document.getElementById('mychart')//.getcontext('2d');
+    let massPopChart = new Chart(myChart, {
+        responsive: true,
+        type: 'bar',//bar,horizontal,pie,line,doughnut,rasar,polar area
+        data: {
+            labels: ['Events', 'Workshops', 'Gallery', 'News', 'Applications', 'Testimonials'],
+            datasets: [{
+                label: 'Count',
+                data: [
+                    10,
+                    7,
+                    5,
+                    4,
+                    5,
+                    6
+
+                ],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+
+        },
+        options: {
+
+        }
+    });
+</script>
+<script>
+    let myChart1 = document.getElementById('mychart1')//.getcontext('2d');
+    let mPopChart = new Chart(myChart1, {
+        responsive: true,
+        type: 'radar',//bar,horizontal,pie,line,doughnut,rasar,polar area
+        data: {
+            labels: ['Events', 'Workshops', 'Gallery', 'News', 'Applications', 'Testimonials'],
+            datasets: [{
+                label: 'Count',
+                data: [
+                    10,
+                    7,
+                    5,
+                    4,
+                    5,
+                    6
+
+                ],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+
+        },
+        options: {
+        }
+    });
+</script>
