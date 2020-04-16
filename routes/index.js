@@ -7,7 +7,7 @@ var Car = require('../models/Car');
 
 // GET home page
 router.get('/', (req, res) => {
-  Car.find( (err, docs) => {
+  Car.find((err, docs) => {
     res.render('index', { title: 'Index Page', layout: 'userlayout', cars: docs });
   });
 });
@@ -17,12 +17,15 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
   res.render('dashboard', {
     title: 'Dashboard',
     name: req.user.name
-});
+  });
 });
 
 // GET admin dashboard
 router.get('/admin/dashboard', function (req, res, next) {
   res.render('AdminDashboard', { title: 'WAR-Dashboard', layout: 'adminlayout' });
+});
+router.get('/admin/viewusers', function (req, res, next) {
+  res.render('AdminViewUsers', { title: 'WAR-View Users', layout: 'adminlayout' });
 });
 
 module.exports = router;
