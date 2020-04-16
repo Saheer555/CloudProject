@@ -25,20 +25,25 @@
                         <td>{{ this.license }}</td>
                         <td>{{ this.verified }}</td>
                         <td>
+                            {{#unless this.verified}}
                             <div class="float-left" style="padding-right:10px;">
                                 <form method="POST" action="/admin/verify/{{ this._id }}">
-                                    <button class="btn btn-success" type="submit" title="Verify">
-                                        <i class="text-center fa fa-check" aria-hidden="true"></i>
+                                    <button class="btn btn-outline-success" type="submit" title="Verify">
+                                        {{!-- <i class="text-center fa fa-check" aria-hidden="true"></i> --}}
+                                        Verify
                                     </button>
                                 </form>
                             </div>
+                            {{/unless}}
+                            {{#if this.verified}}
                             <div class="float-left">
                                 <form method="POST" action="/admin/deverify/{{ this._id }}">
                                     <button class="btn btn-danger" type="submit" title="Deverify">
-                                        <i class="text-center fa fa-ban" aria-hidden="true"></i>
+                                        Deverify
                                     </button>
                                 </form>
                             </div>
+                            {{/if}}
                         </td>
                     </tr>
                     {{/each}}
