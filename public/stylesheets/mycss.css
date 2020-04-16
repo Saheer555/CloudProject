@@ -505,14 +505,14 @@ body{
     transition: margin .25s ease-out;
   }
   
-  #sidebar-wrapper .sidebar-heading {
+   .sidebar-heading {
     padding-top:0.5em;
     padding-left:0.9em;
     font-size: 1.2rem;
     color: #fafafa;
   }
   
-  #sidebar-wrapper .list-group {
+ .list-group {
     min-width: 15rem;
     min-height:100%;
   }
