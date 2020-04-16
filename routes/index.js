@@ -22,6 +22,7 @@ router.get('/admin/viewusers', function (req, res, next) {
   res.render('AdminViewUsers', { title: 'WAR-View Users', layout: 'adminlayout' });
 });
 
+// GET user dashboard
 router.get('/dashboard', ensureAuthenticated, (req, res) => {
   const userid = req.user._id;
   Booking.find({ userid: userid }, function (err, docs) {
@@ -29,23 +30,24 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
 
           res.render('dashboard', {
               title: 'Dashboard',
-              order: docs,
+              booking: docs,
               userid: req.user._id,
               name: req.user.name,
-              email: req.user.email,
+              email: req.user.email
           });
       } else {
           res.render('dashboard', {
               title: 'Dashboard',
-              order: docs,
+              booking: docs,
               userid: req.user._id,
               name: req.user.name,
-              email: req.user.email,
+              email: req.user.email
           });
       }
   });
 });
 
+// User Dashbaord - Change name or email
 router.post('/dashboard', ensureAuthenticated, (req, res) => {
   const { userid, name, email } = req.body;
 
@@ -60,11 +62,12 @@ router.post('/dashboard', ensureAuthenticated, (req, res) => {
           res.render('dashboard', {
               userid,
               name,
-              email,
+              email
           });
       });
 });
 
+// User Dashbaord - Change password
 router.post('/dashboard/changepass', ensureAuthenticated, (req, res) => {
   const { email, password, newpassword, newpassword2 } = req.body;
 

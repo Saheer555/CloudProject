@@ -35,6 +35,14 @@ var BookingSchema = new Schema({
         type: String,
         required: true
     },
+    diffdays: {
+        type: String,
+        required: true
+    },
+    carmodel: {
+        type: String,
+        required: true
+    },
 });
 
 const Booking = mongoose.model('Booking', BookingSchema);
