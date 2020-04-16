@@ -20,5 +20,18 @@
     "nodemon": "^2.0.2",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0"
-  }
+  },
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Saheer555/CloudProject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Saheer555/CloudProject/issues"
+  },
+  "homepage": "https://github.com/Saheer555/CloudProject#readme",
+  "description": ""
 }
