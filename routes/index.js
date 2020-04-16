@@ -4,6 +4,7 @@ var router = express.Router();
 const { ensureAuthenticated } = require('../config/auth');
 
 var Car = require('../models/Car');
+var User = require('../models/User');
 
 // GET home page
 router.get('/', (req, res) => {
@@ -26,6 +27,32 @@ router.get('/admin/dashboard', function (req, res, next) {
 });
 router.get('/admin/viewusers', function (req, res, next) {
   res.render('AdminViewUsers', { title: 'WAR-View Users', layout: 'adminlayout' });
+});
+
+router.get('/admin/dashboard/users', ensureAuthenticated, (req, res) => {
+  const userid = req.user._id;
+  User.find({}, function (err, docs) {
+      if (typeof docs !== 'undefined' && docs.length > 0) {
+          //var quantity = docs[0].quantity;
+
+          res.render('dashboard', {
+              title: 'Dashboard',
+              user: docs,
+              quantity,
+              userid: req.user._id,
+              name: req.user.name,
+              email: req.user.email,
+          });
+      } else {
+          res.render('dashboard', {
+              title: 'Dashboard',
+              user: docs,
+              userid: req.user._id,
+              name: req.user.name,
+              email: req.user.email,
+          });
+      }
+  });
 });
 
 module.exports = router;

@@ -54,11 +54,10 @@
         <form method="POST" action="/rent/{{ car._id }}">
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <input type="text" class="form-control" id="userid" name="userid" value="{{userid}}" hidden>
+                    <input type="text" class="form-control" id="userid" name="userid" value="{{username._id}}" hidden>
                 </div>
                 <div class="form-group col-md-6">
-                    <input type="text" class="form-control" id="carregnumber" name="carregnumber"
-                        value="{{ car.carregnumber }}" hidden>
+                    <input type="text" class="form-control" id="carid" name="carid" value="{{ car._id }}" hidden>
                 </div>
             </div>
 
@@ -111,8 +110,9 @@
                 </div>
 
                 <div class="form-group col-md-6 text-center">
-                    <label for="totalprice">Total Price</label>
+                    <label for="calcprice">Total Price</label>
                     <h4 id="calcprice">Please select a Fuel Package</h4>
+                    <input type="text" class="form-control" id="totalprice" name="totalprice" hidden>
                 </div>
             </div>
 
@@ -126,15 +126,29 @@
 
 <script>
     function getText(slction) {
+        var pickupdate = document.getElementById('pickupdate').value.split('-').join('');
+        var dropdate = document.getElementById('dropdate').value.split('-').join('');
+        var diffdays = parseInt(dropdate - pickupdate, 10) + 1;
+        var baseValue = parseInt("{{car.price}}", 10);
+
         var choice = slction.value;
+
         if (choice == 0) {
             document.getElementById('calcprice').innerHTML = "Please select a Fuel Package";
             return;
         } else if (choice == 1) {
-            choice = 'suk ma diiiik';
+            //Rs.500 for 50km
+            choice = baseValue + (diffdays * 500);
         } else if (choice == 2) {
-            choice = 'optimize this later';
+            //Rs.1500 for 150km
+            choice = baseValue + (diffdays * 1500);
+        } else if (choice == 3) {
+            //Rs.2000 for 200km
+            choice = baseValue + (diffdays * 2000);
+        } else if (choice == 4) {
+            choice = baseValue + (diffdays * 10);
         }
         document.getElementById('calcprice').innerHTML = "₹" + choice;
+        document.getElementById('totalprice').value = choice;
     }
 </script>
