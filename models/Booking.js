@@ -7,6 +7,14 @@ var BookingSchema = new Schema({
         type: String,
         required: true
     },
+    username: {
+        type: String,
+        required: true
+    },
+    brand: {
+        type: String,
+        required: true
+    },
     carid: {
         type: String,
         required: true

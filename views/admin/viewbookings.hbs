@@ -1,0 +1,40 @@
+<div class="container-fluid">
+    <h2 class="mt-4" style="color: gray">{{title}}</h2><br>
+
+    <div class="card">
+        <div class="card-body">
+            <!--Display sesion message succes or fail here-->
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">User name</th>
+                        <th scope="col">Car</th>
+                        <th scope="col">Pick up date</th>
+                        <th scope="col">Drop date</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each booking}}
+                    <tr>
+                        <td>{{ this.username }}</td>
+                        <td>{{ this.brand }} - {{ this.carmodel }}</td>
+                        <td>{{ this.pickupdate }}</td>
+                        <td>{{ this.dropdate }}</td>
+                        <td>
+                            <div class="float-left" style="padding-right:10px;">
+                                <form method="POST" action="/admin/deletebooking/{{ this._id }}">
+                                    <button class="btn btn-primary" type="submit" title="delete">
+                                        Delete
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

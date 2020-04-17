@@ -1,0 +1,45 @@
+<div class="container-fluid">
+    <h2 class="mt-4" style="color: gray">{{title}}</h2><br>
+
+    {{> messages }}
+    <div class="card">
+        <div class="card-body">
+            <form method="POST" action="/admin/addcar" enctype="multipart/form-data">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="brand">Brand</label>
+                        <input type="text" class="form-control" id="brand" placeholder="Add car brand" name="brand">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="carmodel">Model</label>
+                        <input type="text" class="form-control" id="carmodel" name="carmodel"
+                            placeholder="Add car model">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="carregnumber">Registration no</label>
+                        <input type="text" class="form-control" id="carregnumber"
+                            placeholder="Add car Registration number" name="carregnumber">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="price">Price</label>
+                        <input type="text" class="form-control" id="price" name="price" placeholder="Add Base Price">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" id="description" name="description"
+                        placeholder="eg : manual/automatic , mileage, petrol/diesel"></textarea>
+
+                </div>
+                <div class="form-group">
+                    <label for="file">Add files</label><br>
+                    <input type="file" class="" id="file" name="imagePath" value="{{imagePath}}" multiple>
+                </div>
+                <button type="submit" class="btn btn-outline-primary float-right">Add Car</button>
+            </form>
+
+        </div>
+    </div>
+</div>

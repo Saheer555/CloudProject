@@ -1,0 +1,42 @@
+<div class="container-fluid">
+    <h2 class="mt-4" style="color: gray">{{title}}</h2><br>
+
+    <div class="card">
+        <div class="card-body">
+            <!--Display sesion message succes or fail here-->
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Brand</th>
+                        <th scope="col">Model</th>
+                        <th scope="col">Register Number</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each car}}
+                    <tr>
+                        <td>{{ this._id }}</td>
+                        <td>{{ this.brand }}</td>
+                        <td>{{ this.carmodel }}</td>
+                        <td>{{ this.carregnumber }}</td>
+                        <td>{{ this.price }}</td>
+                        <td>
+                            <div class="float-left" style="padding-right:10px;">
+                                <form method="POST" action="/admin/modifycar/{{ this._id }}">
+                                    <button class="btn btn-primary" type="submit" title="edit">
+                                        Edit
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 a {
@@ -111,6 +111,6 @@ a {
   /* background-color: rgba(236, 235, 235, 0.6); */
 }
 .fa-angle-down:hover {
-  text-shadow: 0 -1px 4px #FFF, 0 -2px 10px #29dfdf, 0 -10px 20px #00a5a5, 0 -18px 40px #008080;
+  text-shadow: 0 1px 4px #FFF, 0 -2px 10px #29dfdf, 0 -10px 20px #00a5a5, 0 -18px 40px #008080;
 }
 
