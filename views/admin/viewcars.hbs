@@ -1,10 +1,9 @@
 <div class="container-fluid">
     <h2 class="mt-4" style="color: gray">{{title}}</h2><br>
-
+    {{> messages}}
     <div class="card">
         <div class="card-body">
             <!--Display sesion message succes or fail here-->
-
             <table class="table">
                 <thead>
                     <tr>
@@ -26,11 +25,61 @@
                         <td>{{ this.price }}</td>
                         <td>
                             <div class="float-left" style="padding-right:10px;">
-                                <form method="POST" action="/admin/modifycar/{{ this._id }}">
-                                    <button class="btn btn-primary" type="submit" title="edit">
-                                        Edit
-                                    </button>
-                                </form>
+                                <button class="btn btn-primary" type="submit" title="edit" data-toggle="modal"
+                                    data-target="#{{ this._id }}">
+                                    Edit
+                                </button>
+                            </div>
+
+                            {{!-- Edit car modal --}}
+
+                            <div class="modal fade" id="{{ this._id }}" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Edit Car details</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form method="POST" action="/admin/modifycar/{{ this._id }}">
+
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-6">
+                                                        <label for="title">Brand</label>
+                                                        <input type="text" class="form-control" id="brand" name="brand"
+                                                            required="" value="{{ this.brand }}">
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label for="title">Model</label>
+                                                        <input type="text" class="form-control" id="carmodel"
+                                                            name="carmodel" required="" value="{{ this.carmodel }}">
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-6">
+                                                        <label for="title">Register Number</label>
+                                                        <input type="text" class="form-control" id="carregnumber"
+                                                            name="carregnumber" required=""
+                                                            value="{{ this.carregnumber }}">
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label for="title">Price</label>
+                                                        <input type="text" class="form-control" id="price" name="price"
+                                                            required="" value="{{ this.price }}">
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-success">Save changes</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </td>
                     </tr>

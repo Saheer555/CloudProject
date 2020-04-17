@@ -25,6 +25,7 @@
         <div class="border-right" id="sidebar-wrapper" style="background-color: #4e73df;">
             <div class="sidebar-heading">
                 <h4>Wheels & Rides</h4>
+                <a href="/" style="color: white;"><small>Visit home</small></a>
             </div>
             <hr>
             <div class="list-group list-group-flush" style="background-color: #4e73df;">
@@ -32,8 +33,6 @@
                         class="fa fa-tachometer text-white" aria-hidden="true"></i><strong>Dashboard</strong></a>
                 <a href="/admin/addcar" class="list-group-item list-group-item-action text-white"><i
                         class="fa fa-user-o text-white" aria-hidden="true"></i>Add a Car</a>
-                <a href="#" class="list-group-item list-group-item-action text-white"><i class="fa fa-user-o text-white"
-                        aria-hidden="true"></i>Add an admin</a>
 
                 <a class="list-group-item list-group-item-action dropdown-toggle text-white" href="#" role="button"
                     id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -54,7 +53,7 @@
             <nav class="navbar navbar-expand-lg navbar-light border-bottom">
                 <button class="btn btn-primary" id="menu-toggle"><span class="navbar-toggler-icon"></span></button>
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                {{!-- <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -76,7 +75,7 @@
                     <form id="logout-form" action="#" method="POST" style="display: none;">
 
                     </form>
-                </div>
+                </div> --}}
             </nav>
             {{{body}}}
 

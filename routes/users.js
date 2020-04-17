@@ -49,6 +49,15 @@ router.post('/register', (req, res) => {
       errors.push({ msg: 'Please fill in all fields.' });
   }
 
+  
+  //License validation
+    var firstLetter = license[0];
+    var secondLetter = license[1];
+    if(license.length != 13  || isNaN(firstLetter) == false || isNaN(secondLetter) == false) {
+        errors.push({ msg: 'Please enter a valid license number.' });
+    }
+
+
   // Check passwords match
   if(password !== password2) {
       errors.push({ msg: 'Passwords do not match.' });

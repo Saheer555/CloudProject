@@ -8,8 +8,8 @@
     </div>
 </div>
 
-<div id="about" class="text-center container-fluid mb-2 mt-1 p-4">
-    <h1 class="p-3">Something about us</h1>
+<div id="about" class="text-center container mb-2 mt-1 p-4">
+    <h2 class="p-3 animated fadeInUp" style="color:teal">Something about us</h2>
     <div class="card-deck">
         <div class="card border-info">
             <img class="card-img-top" src="/assets/img/team.png" alt="Card image cap">
@@ -48,7 +48,7 @@
     </div>
 </div>
 
-<h1 class="text-center">Browse Cars</h1>
+<h2 class="text-center mt-5 animated fadeInUp" style="color : teal">Browse Cars</h2>
 <br>
 <div id="browsecars" class="grid">
     {{#each cars}}
@@ -61,7 +61,7 @@
             </a>
         </div>
         <h6 class="pull-left mt-2">Rs.{{ this.price }}</h6>
-        <a href="/car/{{this.id}}" class="btn btn-primary" style="width:100%">View Product</a>
+        <a href="/car/{{this.id}}" class="btn btn-primary" style="width:100%">View Car</a>
     </article>
     {{/each}}
 </div>

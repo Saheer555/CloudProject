@@ -1,25 +1,8 @@
 const express = require('express');
-const multer = require('multer');
 const router = express.Router();
 
-//import Authentication
-const { ensureAuthenticated } = require('../config/auth');
-
 var Car = require('../models/Car');
-var User = require('../models/User');
-
-//Configuring multer
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-      cb(null, './public/uploads')
-  },
-  filename: function (req, file, cb) {
-      cb(null, Date.now() + file.originalname);
-      console.log(file.mimetype);
-  }
-});
-
-var upload = multer({ storage: storage });
+var Booking = require('../models/Booking');
 
 router.get('/:id',(req, res) => {
   const id = req.params.id;
@@ -36,14 +19,25 @@ router.get('/:id',(req, res) => {
     var desc = docs[0].description;
     desc = desc.split("\n");
     docs[0].description = desc;
-
-    // Render page
-    res.render('car', {
-      title: carbrand + " - " + carmodel,
-      brand: carbrand,
-      carmodel: carmodel,
-      car: docs[0],
-      desc
+    
+    const currentDate = new Date(Date.now()).toISOString().substr(0,10).split('-').join('');
+    let availability = true;
+    
+    Booking.find({carid : docs[0]._id}, function(err,bookings) {
+      if (typeof bookings !== 'undefined' && bookings.length > 0) {
+        const pickupdate = bookings[0].pickupdate.split('-').join('');
+        const dropdate = bookings[0].dropdate.split('-').join('');
+        if(currentDate > pickupdate && currentDate < dropdate) {
+          availability = false;
+        }
+      }
+      // Render page
+      res.render('car', {
+        title: carbrand + " - " + carmodel,
+        car: docs[0],
+        desc,
+        availability
+      });
     });
   });
 });

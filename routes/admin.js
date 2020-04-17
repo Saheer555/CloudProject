@@ -68,6 +68,30 @@ router.get('/viewcars', function (req, res, next) {
     });
 });
 
+router.post('/modifycar/:id', function (req, res, next) {
+    const { brand, carmodel, carregnumber, price } = req.body;
+
+    Car.find({ _id: req.params.id }, (err, docs) => {
+
+        if(carregnumber.length != 13) {
+            req.flash('error_msg', 'Please enter a valid registration number.');
+            res.redirect('/admin/viewcars');
+            return;
+        }
+
+        var car = docs[0];
+        car.brand = brand;
+        car.carmodel = carmodel;
+        car.carregnumber = carregnumber;
+        car.price = price;
+
+        car.save();
+
+        req.flash('success_msg', 'Car details modified!');
+        res.redirect('/admin/viewcars');
+    });
+});
+
 router.get('/addcar', function (req, res, next) {
     res.render('./admin/addcar', {
         title: 'WAR-Add a Car',
@@ -128,12 +152,17 @@ router.post('/addcar', upload.array('imagePath', 5), (req, res) => {
 router.get('/viewbookings', function (req, res, next) {
     //Not working
     Booking.find({}, (err, docs) => {
-        console.log(docs);
         res.render('./admin/viewbookings', {
             booking: docs,
             title: 'WAR-View Bookings',
             layout: './admin/layout'
         });
+    });
+});
+
+router.post('/deletebooking/:id', function (req, res, next) {
+    Booking.remove({ _id: req.params.id }, (err, docs) => {
+        res.redirect('/admin/viewbookings');
     });
 });
 
