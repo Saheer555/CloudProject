@@ -10,6 +10,12 @@ a {
   color: #00B7FF;
 }
 
+/* Index Page - About us */
+.card-title {
+  font-weight: 700;
+}
+
+/* Car Page - Carousel */
 .carousel-item img {
   height: 600px;
   object-fit: cover;
