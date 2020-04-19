@@ -151,7 +151,7 @@ router.post('/addcar', upload.array('imagePath', 5), (req, res) => {
             });
         }
         
-        sleep(10000);
+        sleep(5000);
 
         newCar.brand = brand;
         newCar.carmodel = carmodel;
