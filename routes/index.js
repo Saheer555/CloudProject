@@ -10,7 +10,7 @@ var Booking = require('../models/Booking');
 // GET home page
 router.get('/', (req, res) => {
   Car.find((err, docs) => {
-    res.render('index', { title: 'Index Page', layout: 'userlayout', cars: docs });
+    res.render('index', { title: 'Wheels & Rides', layout: 'userlayout', cars: docs });
   });
 });
 
