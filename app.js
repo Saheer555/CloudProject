@@ -17,11 +17,15 @@ var adminRouter = require('./routes/admin');
 
 // Passport config
 require('./config/passport')(passport);
+const keys = require('./config/keys');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-mongoose.connect('mongodb://localhost:27017/wheelsandrides', { useNewUrlParser: true, useUnifiedTopology: true });
+// Connect to Mongo
+mongoose.connect(keys.MongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('Mongo DB Connected...'))
+    .catch(err => console.log(err));
 
 // view engine setup
 app.engine('hbs',

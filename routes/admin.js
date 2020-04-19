@@ -1,12 +1,21 @@
 var express = require('express');
 const multer = require('multer');
 var router = express.Router();
+var cloudinary = require('cloudinary').v2;
+const keys = require('../config/keys');
 
 const { ensureAuthenticated } = require('../config/auth');
 
 var Car = require('../models/Car');
 var User = require('../models/User');
 var Booking = require('../models/Booking');
+
+// Configure cloudinary
+cloudinary.config({
+    cloud_name: keys.cloud_name,
+    api_key: keys.api_key,
+    api_secret: keys.api_secret
+});
 
 //Configuring multer
 var storage = multer.diskStorage({
@@ -103,8 +112,6 @@ router.post('/addcar', upload.array('imagePath', 5), (req, res) => {
     const { brand, carmodel, carregnumber, price, description, imagePath } = req.body;
     let errors = [];
 
-    console.log(req.body);
-    console.log(brand, carmodel, carregnumber, price);
     // Check required fields
     if (!brand || !carmodel || !carregnumber || !price) {
         errors.push({ msg: 'Please fill in all fields.' });
@@ -133,15 +140,20 @@ router.post('/addcar', upload.array('imagePath', 5), (req, res) => {
 
         const files = req.files;
 
+        for(var i=0; i<files.length; i++) {
+            cloudinary.uploader.upload(files[i].path, (err, result) => {
+                console.log(result.url);
+                newCar.imagePath[i] = result.url;
+            });
+        }
+        
         newCar.brand = brand;
         newCar.carmodel = carmodel;
         newCar.carregnumber = carregnumber;
         newCar.price = price;
         newCar.description = description;
 
-        for (var i = 0; i < files.length; i++) {
-            newCar.imagePath[i] = files[i].path.substring(6);
-        }
+        console.log(newCar);
 
         newCar.save();
 
