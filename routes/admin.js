@@ -3,6 +3,7 @@ const multer = require('multer');
 var router = express.Router();
 var cloudinary = require('cloudinary').v2;
 const keys = require('../config/keys');
+const sleep = require('system-sleep');
 
 const { ensureAuthenticated } = require('../config/auth');
 
@@ -140,18 +141,27 @@ router.post('/addcar', upload.array('imagePath', 5), (req, res) => {
 
         const files = req.files;
 
+        const arrurl = [];
+
         for(var i=0; i<files.length; i++) {
+            console.log(i);
             cloudinary.uploader.upload(files[i].path, (err, result) => {
-                console.log(result.url);
-                newCar.imagePath[i] = result.url;
+                arrurl[--i] = result.url;
+                console.log(`Array url ${i}: `, arrurl[i]);
             });
         }
         
+        sleep(10000);
+
         newCar.brand = brand;
         newCar.carmodel = carmodel;
         newCar.carregnumber = carregnumber;
         newCar.price = price;
         newCar.description = description;
+
+        for(var i=0; i<arrurl.length; i++) {
+            newCar.imagePath[i] = arrurl[i];
+        }
 
         console.log(newCar);
 
